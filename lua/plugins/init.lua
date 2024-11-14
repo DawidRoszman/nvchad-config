@@ -6,6 +6,26 @@ return {
       require "configs.conform"
     end,
   },
+  {
+	"michaelrommel/nvim-silicon",
+	lazy = true,
+	cmd = "Silicon",
+	main = "nvim-silicon",
+	opts = {
+		-- Configuration here, or leave empty to use defaults
+    to_clipboard = true,
+		line_offset = function(args)
+			return args.line1
+		end,
+	},
+  keys = {
+    mode = { "v" },
+    { "<leader>s",  group = "Silicon" },
+    { "<leader>sc", function() require("nvim-silicon").clip() end, desc = "Copy code screenshot to clipboard" },
+    { "<leader>sf", function() require("nvim-silicon").file() end,  desc = "Save code screenshot as file" },
+    { "<leader>ss", function() require("nvim-silicon").shoot() end,  desc = "Create code screenshot" },
+}
+},
 
   -- These are some examples, uncomment them if you want to see them work!
   {
