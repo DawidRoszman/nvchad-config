@@ -6,6 +6,9 @@ return {
       require "configs.conform"
     end,
   },
+  {
+    "joeveiga/ng.nvim",
+  },
 
   -- These are some examples, uncomment them if you want to see them work!
   {
