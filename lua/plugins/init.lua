@@ -9,6 +9,7 @@ return {
   {
     "joeveiga/ng.nvim",
   },
+  {
 	"michaelrommel/nvim-silicon",
 	lazy = true,
 	cmd = "Silicon",
