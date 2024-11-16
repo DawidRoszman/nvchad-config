@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "jdtls", "clangd", "gopls", "templ", "gdscript", "pyright", "angularls" }
+local servers = { "html", "cssls", "clangd", "gopls", "templ", "gdscript", "pyright", "angularls" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -15,6 +15,21 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+--java
+lspconfig.jdtls.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+    java = {
+      project = {
+        lombok = {
+          enabled = true,
+        }
+      }
+    }
+  }
+}
 -- typescript
 lspconfig.ts_ls.setup {
   on_attach = on_attach,
