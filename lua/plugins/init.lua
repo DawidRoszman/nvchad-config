@@ -94,7 +94,17 @@ return {
   keys = {
     { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
   }
+},
+{
+    "MeanderingProgrammer/markdown.nvim",
+    name = "render-markdown",
+    cmd = { "RenderMarkdown" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    config = function()
+        require("render-markdown").setup({})
+    end,
 }
+
   --
   -- {
   -- 	"williamboman/mason.nvim",
