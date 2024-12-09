@@ -36,6 +36,7 @@ require "nvchad.autocmds"
 
 vim.schedule(function()
   require "mappings"
+  require "autocmds"
 end)
 
 vim.opt.colorcolumn = "80"
