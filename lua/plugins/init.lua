@@ -165,6 +165,9 @@ return {
       require('configs.java')
     end,
   },
+  {
+    "williamboman/mason-lspconfig.nvim"
+  }
   --
   -- {
   -- 	"williamboman/mason.nvim",
