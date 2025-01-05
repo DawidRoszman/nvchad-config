@@ -70,7 +70,7 @@ lspconfig.tailwindcss.setup {
   capabilities = capabilities,
   filetypes = { "html", "jsx", "tsx", "templ" }
 }
-lspconfig.emmet_ls.setup({
+lspconfig.emmet_language_server.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue", "templ" },
