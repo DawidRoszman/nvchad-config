@@ -33,6 +33,7 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
+require "configs.nvim-tree"
 require "configs.gitsigns"
 
 vim.schedule(function()
