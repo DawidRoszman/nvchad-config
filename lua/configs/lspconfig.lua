@@ -9,15 +9,15 @@ m.setup {
   ensure_installed = {"gopls", "ts_ls"},
 }
 
-m.setup_handlers {
-  function (server_name)
-    require('lspconfig')[server_name].setup({
-      on_attach = on_attach,
-      on_init = on_init,
-      capabilities = capabilities,
-    })
-  end
-}
+-- m.setup_handlers {
+--   function (server_name)
+--     require('lspconfig')[server_name].setup({
+--       on_attach = on_attach,
+--       on_init = on_init,
+--       capabilities = capabilities,
+--     })
+--   end
+-- }
 --java
 lspconfig.jdtls.setup {
   on_attach = on_attach,
@@ -33,6 +33,7 @@ lspconfig.jdtls.setup {
     }
   }
 }
+
 -- typescript
 -- lspconfig.ts_ls.setup {
 --   on_attach = on_attach,
@@ -41,23 +42,23 @@ lspconfig.jdtls.setup {
 -- }
 
 -- If you are using mason.nvim, you can get the ts_plugin_path like this
-local mason_registry = require('mason-registry')
-local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+-- local mason_registry = require('mason-registry')
+-- local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
 
 lspconfig.ts_ls.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
 
-  init_options = {
-    plugins = {
-      {
-        name = '@vue/typescript-plugin',
-        location = vue_language_server_path,
-        languages = { 'vue' },
-      },
-    },
-  },
+  -- init_options = {
+  --   plugins = {
+  --     {
+  --       name = '@vue/typescript-plugin',
+  --       location = vue_language_server_path,
+  --       languages = { 'vue' },
+  --     },
+  --   },
+  -- },
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 }
 

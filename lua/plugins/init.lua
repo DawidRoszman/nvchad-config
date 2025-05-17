@@ -168,7 +168,30 @@ return {
   {
     "williamboman/mason-lspconfig.nvim"
   },
-    --
+  {
+    'nvim-neotest/neotest',
+    config = function()
+      require("configs.neotest")
+    end,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'rcasia/neotest-java',
+      'nvim-neotest/nvim-nio',
+      'mfussenegger/nvim-jdtls'
+    },
+    keys = {
+      { "<leader>tn", function() require("neotest").run.run() end, desc = "Run Nearest Test" },
+      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File Tests" },
+      { "<leader>tF", function() require("neotest").run.run({ vim.fn.getcwd() }) end, desc = "Run Project Tests" },
+      { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop Test" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary" },
+      { "<leader>to", function() require("neotest").output.open() end, desc = "Open Output" },
+      { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel" },
+    }
+  },
+  --
   -- {
   -- 	"williamboman/mason.nvim",
   -- 	opts = {
