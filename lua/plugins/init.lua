@@ -35,7 +35,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
+      require("configs.lspconfig")
     end,
   },
   {
@@ -141,6 +141,63 @@ return {
     },
   },
   {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "leoluz/nvim-dap-go",
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-neotest/nvim-nio",
+      "williamboman/mason.nvim",
+    },
+    keys = {
+      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+      { "<leader>dc", function() require("dap").continue() end,          desc = "Continue" },
+      { "<leader>di", function() require("dap").step_into() end,         desc = "Step Into" },
+      { "<leader>do", function() require("dap").step_over() end,         desc = "Step Over" },
+      { "<leader>du", function() require("dap").step_out() end,          desc = "Step Out" },
+      { "<leader>dr", function() require("dap").repl.open() end,         desc = "Open REPL" },
+      { "<leader>du", function() require("dapui").toggle() end,          desc = "Toggle DAP UI" },
+    },
+    config = function()
+      local dap = require "dap"
+      local ui = require "dapui"
+
+      require("dapui").setup()
+      require("dap-go").setup()
+      require("configs.nvim-dap")
+
+      require("nvim-dap-virtual-text").setup {
+        -- This just tries to mitigate the chance that I leak tokens here. Probably won't stop it from happening...
+        display_callback = function(variable)
+          local name = string.lower(variable.name)
+          local value = string.lower(variable.value)
+          if name:match "secret" or name:match "api" or value:match "secret" or value:match "api" then
+            return "*****"
+          end
+
+          if #variable.value > 15 then
+            return " " .. string.sub(variable.value, 1, 15) .. "... "
+          end
+
+          return " " .. variable.value
+        end,
+      }
+
+      dap.listeners.before.attach.dapui_config = function()
+        ui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        ui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        ui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        ui.close()
+      end
+    end,
+  },
+  {
     'nvim-java/nvim-java',
     lazy = false,
     dependencies = {
@@ -182,15 +239,21 @@ return {
       'mfussenegger/nvim-jdtls'
     },
     keys = {
-      { "<leader>tn", function() require("neotest").run.run() end, desc = "Run Nearest Test" },
-      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File Tests" },
+      { "<leader>tn", function() require("neotest").run.run() end,                    desc = "Run Nearest Test" },
+      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end,  desc = "Run File Tests" },
       { "<leader>tF", function() require("neotest").run.run({ vim.fn.getcwd() }) end, desc = "Run Project Tests" },
-      { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop Test" },
-      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary" },
-      { "<leader>to", function() require("neotest").output.open() end, desc = "Open Output" },
-      { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel" },
+      { "<leader>tS", function() require("neotest").run.stop() end,                   desc = "Stop Test" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end,             desc = "Toggle Summary" },
+      { "<leader>to", function() require("neotest").output.open() end,                desc = "Open Output" },
+      { "<leader>tO", function() require("neotest").output_panel.toggle() end,        desc = "Toggle Output Panel" },
     }
   },
+  {
+    'ThePrimeagen/harpoon',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+  }
   --
   -- {
   -- 	"williamboman/mason.nvim",
