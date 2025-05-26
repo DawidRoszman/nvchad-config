@@ -9,4 +9,3 @@ require("nvim-tree").setup {
     update_root = false,
   },
 }
-

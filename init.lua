@@ -43,3 +43,10 @@ end)
 
 vim.opt.colorcolumn = "80"
 vim.wo.relativenumber = true
+
+vim.filetype.add({
+  extension = {
+    tml = "html",
+  },
+})
+
