@@ -106,45 +106,30 @@ return {
   },
   -- {
   --   "zbirenbaum/copilot.lua",
-  --   cmd = "Copilot",
+  --   -- cmd = "Copilot",
   --   event = "InsertEnter",
-  --   -- opts = {
-  --   --   -- Possible configurable fields can be found on:
-  --   --   -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
-  --   --   suggestion = {
-  --   --     enable = true,
-  --   --   },
-  --   --   panel = {
-  --   --     enable = false,
-  --   --   },
-  --   -- },
-  --   config = function()
-  --     require("copilot").setup({
-  --       suggestion = {
-  --         auto_trigger = true,
-  --       }
-  --     })
-  --   end,
+  --   opts = {
+  --     -- Possible configurable fields can be found on:
+  --     -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+  --     suggestion = {
+  --       enable = false,
+  --     },
+  --     panel = {
+  --       enable = false,
+  --     },
+  --   },
   -- },
   --
   -- {
   --   "hrsh7th/nvim-cmp",
-  --   dependencies = {
-  --     {
-  --       "zbirenbaum/copilot-cmp",
-  --       config = function()
-  --         require("copilot_cmp").setup()
-  --       end,
-  --     },
-  --   },
   --   opts = {
   --     sources = {
-  --       { name = "nvim_lsp", group_index = 2 },
-  --       { name = "copilot",  group_index = 2 },
-  --       { name = "luasnip",  group_index = 2 },
-  --       { name = "buffer",   group_index = 2 },
-  --       { name = "nvim_lua", group_index = 2 },
-  --       { name = "path",     group_index = 2 },
+  --       { name = "nvim_lsp",   group_index = 2 },
+  --       { name = "supermaven", group_index = 2 },
+  --       { name = "luasnip",    group_index = 2 },
+  --       { name = "buffer",     group_index = 2 },
+  --       { name = "nvim_lua",   group_index = 2 },
+  --       { name = "path",       group_index = 2 },
   --     },
   --   },
   -- },
@@ -283,4 +268,3 @@ return {
   -- 	},
   -- },
 }
-
