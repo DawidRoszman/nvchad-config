@@ -23,11 +23,29 @@ return {
     },
     keys = {
       mode = { "v" },
-      { "<leader>s",  group = "Silicon" },
-      { "<leader>sc", function() require("nvim-silicon").clip() end,  desc = "Copy code screenshot to clipboard" },
-      { "<leader>sf", function() require("nvim-silicon").file() end,  desc = "Save code screenshot as file" },
-      { "<leader>ss", function() require("nvim-silicon").shoot() end, desc = "Create code screenshot" },
-    }
+      { "<leader>s", group = "Silicon" },
+      {
+        "<leader>sc",
+        function()
+          require("nvim-silicon").clip()
+        end,
+        desc = "Copy code screenshot to clipboard",
+      },
+      {
+        "<leader>sf",
+        function()
+          require("nvim-silicon").file()
+        end,
+        desc = "Save code screenshot as file",
+      },
+      {
+        "<leader>ss",
+        function()
+          require("nvim-silicon").shoot()
+        end,
+        desc = "Create code screenshot",
+      },
+    },
   },
 
   -- These are some examples, uncomment them if you want to see them work!
@@ -35,7 +53,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
-      require("configs.lspconfig")
+      require "configs.lspconfig"
     end,
   },
   {
@@ -92,8 +110,8 @@ return {
     -- setting the keybinding for LazyGit with 'keys' is recommended in
     -- order to load the plugin when the command is run for the first time
     keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    }
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -143,13 +161,55 @@ return {
       "williamboman/mason.nvim",
     },
     keys = {
-      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-      { "<leader>dc", function() require("dap").continue() end,          desc = "Continue" },
-      { "<leader>di", function() require("dap").step_into() end,         desc = "Step Into" },
-      { "<leader>do", function() require("dap").step_over() end,         desc = "Step Over" },
-      { "<leader>du", function() require("dap").step_out() end,          desc = "Step Out" },
-      { "<leader>dr", function() require("dap").repl.open() end,         desc = "Open REPL" },
-      { "<leader>du", function() require("dapui").toggle() end,          desc = "Toggle DAP UI" },
+      {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle Breakpoint",
+      },
+      {
+        "<leader>dc",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Continue",
+      },
+      {
+        "<leader>di",
+        function()
+          require("dap").step_into()
+        end,
+        desc = "Step Into",
+      },
+      {
+        "<leader>do",
+        function()
+          require("dap").step_over()
+        end,
+        desc = "Step Over",
+      },
+      {
+        "<leader>du",
+        function()
+          require("dap").step_out()
+        end,
+        desc = "Step Out",
+      },
+      {
+        "<leader>dr",
+        function()
+          require("dap").repl.open()
+        end,
+        desc = "Open REPL",
+      },
+      {
+        "<leader>du",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "Toggle DAP UI",
+      },
     },
     config = function()
       local dap = require "dap"
@@ -157,7 +217,7 @@ return {
 
       require("dapui").setup()
       require("dap-go").setup()
-      require("configs.nvim-dap")
+      require "configs.nvim-dap"
 
       require("nvim-dap-virtual-text").setup {
         -- This just tries to mitigate the chance that I leak tokens here. Probably won't stop it from happening...
@@ -191,62 +251,130 @@ return {
     end,
   },
   {
-    'nvim-java/nvim-java',
+    "nvim-java/nvim-java",
     lazy = false,
     dependencies = {
-      'nvim-java/lua-async-await',
-      'nvim-java/nvim-java-core',
-      'nvim-java/nvim-java-test',
-      'nvim-java/nvim-java-dap',
-      'MunifTanjim/nui.nvim',
-      'neovim/nvim-lspconfig',
-      'mfussenegger/nvim-dap',
+      "nvim-java/lua-async-await",
+      "nvim-java/nvim-java-core",
+      "nvim-java/nvim-java-test",
+      "nvim-java/nvim-java-dap",
+      "MunifTanjim/nui.nvim",
+      "neovim/nvim-lspconfig",
+      "mfussenegger/nvim-dap",
       {
-        'williamboman/mason.nvim',
+        "williamboman/mason.nvim",
         opts = {
           registries = {
-            'github:nvim-java/mason-registry',
-            'github:mason-org/mason-registry',
+            "github:nvim-java/mason-registry",
+            "github:mason-org/mason-registry",
           },
         },
       },
     },
     config = function()
-      require('configs.java')
+      require "configs.java"
     end,
   },
   {
-    "williamboman/mason-lspconfig.nvim"
+    "williamboman/mason-lspconfig.nvim",
   },
   {
-    'nvim-neotest/neotest',
+    "nvim-neotest/neotest",
     config = function()
-      require("configs.neotest")
+      require "configs.neotest"
     end,
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim',
-      'rcasia/neotest-java',
-      'nvim-neotest/nvim-nio',
-      'mfussenegger/nvim-jdtls'
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "rcasia/neotest-java",
+      "nvim-neotest/nvim-nio",
+      "mfussenegger/nvim-jdtls",
     },
     keys = {
-      { "<leader>tn", function() require("neotest").run.run() end,                    desc = "Run Nearest Test" },
-      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end,  desc = "Run File Tests" },
-      { "<leader>tF", function() require("neotest").run.run({ vim.fn.getcwd() }) end, desc = "Run Project Tests" },
-      { "<leader>tS", function() require("neotest").run.stop() end,                   desc = "Stop Test" },
-      { "<leader>ts", function() require("neotest").summary.toggle() end,             desc = "Toggle Summary" },
-      { "<leader>to", function() require("neotest").output.open() end,                desc = "Open Output" },
-      { "<leader>tO", function() require("neotest").output_panel.toggle() end,        desc = "Toggle Output Panel" },
-    }
+      {
+        "<leader>tn",
+        function()
+          require("neotest").run.run()
+        end,
+        desc = "Run Nearest Test",
+      },
+      {
+        "<leader>tf",
+        function()
+          require("neotest").run.run(vim.fn.expand "%")
+        end,
+        desc = "Run File Tests",
+      },
+      {
+        "<leader>tF",
+        function()
+          require("neotest").run.run { vim.fn.getcwd() }
+        end,
+        desc = "Run Project Tests",
+      },
+      {
+        "<leader>tS",
+        function()
+          require("neotest").run.stop()
+        end,
+        desc = "Stop Test",
+      },
+      {
+        "<leader>ts",
+        function()
+          require("neotest").summary.toggle()
+        end,
+        desc = "Toggle Summary",
+      },
+      {
+        "<leader>to",
+        function()
+          require("neotest").output.open()
+        end,
+        desc = "Open Output",
+      },
+      {
+        "<leader>tO",
+        function()
+          require("neotest").output_panel.toggle()
+        end,
+        desc = "Toggle Output Panel",
+      },
+    },
   },
   {
-    'ThePrimeagen/harpoon',
+    "ThePrimeagen/harpoon",
     dependencies = {
-      'nvim-lua/plenary.nvim'
+      "nvim-lua/plenary.nvim",
     },
-  }
+  },
+  {
+    { "wakatime/vim-wakatime", lazy = false },
+  },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      bigfile = { enabled = true },
+      dashboard = { enabled = true },
+      explorer = { enabled = true },
+      indent = { enabled = true },
+      input = { enabled = true },
+      picker = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      scope = { enabled = true },
+      -- scroll = { enabled = true },
+      statuscolumn = { enabled = true },
+      words = { enabled = true },
+    },
+  },
   --
   -- {
   -- 	"williamboman/mason.nvim",
